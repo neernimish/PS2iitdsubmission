@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f8f9fa;
+        }
+        .badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .bg-green { background-color: green; }
+        .bg-orange { background-color: orange; }
+        .bg-red { background-color: red; }
+    </style>
+</head>
+<body>
+    <h1>Hospital Dashboard</h1>
+    <nav>
+        <a href="/">Dashboard</a>
+        <a href="/register_patient">Register Patient</a>
+        <a href="/submit_prescription">Submit Prescription</a>
+    </nav>
+
+    <div class="card">
+        <h2>Delhi NCR Hospitals Map & AMR Risk</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Matplotlib Map">
+    </div>
+    
+    <div class="card">
+        <h2>Hospital List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hospital Name</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>AMR Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hospital in hospitals %}
+                <tr>
+                    <td>{{ hospital.hospital_name }}</td>
+                    <td>{{ hospital.lat }}</td>
+                    <td>{{ hospital.lon }}</td>
+                    <td>
+                        <span class="badge bg-{{ hospital.color }}">{{ hospital.score }}</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

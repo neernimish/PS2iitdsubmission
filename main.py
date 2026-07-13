@@ -51,7 +51,7 @@ def startupdb():
     if c.fetchone()[0] == 0:
         c.executescript("""
         INSERT INTO hospitals (hospital_name, hospital_locality, lat, lon) VALUES 
-        ('AIIMS Delhi',            'Ansari Nagar',    28.5672, 77.2100),
+        ('AIIMS Delhi',            'Ansari Nagar',    28.5672, 77.1100),
         ('Safdarjung Hospital',    'Ansari Nagar',    28.5683, 77.2064),
         ('Max Super Speciality',   'Saket',           28.5273, 77.2122),
         ('Apollo Hospital',        'Sarita Vihar',    28.5367, 77.2831),

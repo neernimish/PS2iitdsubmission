@@ -1,1 +1,1 @@
-{"name": "flask-app", "version": "1.0.0", "scripts": {"build": "pip3 install --break-system-packages Flask pandas matplotlib gunicorn", "start": "gunicorn -b 0.0.0.0:3000 main:app", "dev": "python3 main.py"}}
+
